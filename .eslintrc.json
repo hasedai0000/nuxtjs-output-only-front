@@ -1,0 +1,17 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/vue3-recommended",
+        "prettier"
+    ],
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "vue/setup-compiler-macro": true
+  },
+  "parserOptions": {
+      "parser": "babel-eslint",
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  }
+}
