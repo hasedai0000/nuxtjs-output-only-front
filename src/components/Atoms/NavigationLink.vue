@@ -9,9 +9,9 @@ const { title, path } = defineProps<Props>()
 
 <template>
   <li class="li">
-    <router-link :to="path">
+    <NuxtLink :to="path">
       {{ title }}
-    </router-link>
+    </NuxtLink>
   </li>
 </template>
 

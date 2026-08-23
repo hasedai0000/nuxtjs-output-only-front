@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { useRoute } from 'vue-router'
 import BaseLayout from '../Organisms/BaseLayout.vue'
 import InputForm from '../Atoms/InputForm.vue'
 import TextArea from '../Atoms/TextArea.vue'
-import { originTodoListInjectionKey } from '../../providers/TodoProviderInjectionKey.ts'
+import { originTodoListInjectionKey } from '../../providers/TodoProviderInjectionKey'
 
 const route = useRoute()
 const todoId = String(route.params.id)

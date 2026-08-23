@@ -4,6 +4,7 @@ import {
   showTodoListInjectionKey,
   handleDeleteTodoInjectionKey
 } from '../../providers/TodoProviderInjectionKey'
+import { NAVIGATION_PATH } from '../../constants/navigation'
 
 const showTodoList = inject(showTodoListInjectionKey)
 const handleDeleteTodo = inject(handleDeleteTodoInjectionKey)
@@ -21,14 +22,14 @@ const handleDelete = (id: string, title: string) => {
       <span class="task">{{ todo.title }}</span>
       <div class="area">
         <div class="far">
-          <router-link :to="{ name: 'detail', params: { id: todo.id } }">
+          <NuxtLink :to="`${NAVIGATION_PATH.DETAIL}${todo.id}`">
             <font-awesome-icon class="far" icon="fa-circle-info" />
-          </router-link>
+          </NuxtLink>
         </div>
         <div class="far">
-          <router-link :to="{ name: 'edit', params: { id: todo.id } }">
+          <NuxtLink :to="`${NAVIGATION_PATH.EDIT}${todo.id}`">
             <font-awesome-icon class="far" icon="fa-pen-to-square" />
-          </router-link>
+          </NuxtLink>
         </div>
 
         <div class="far">

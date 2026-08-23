@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { useRouter } from 'vue-router'
 import BaseLayout from '../Organisms/BaseLayout.vue'
 import InputForm from '../Atoms/InputForm.vue'
 import TextArea from '../Atoms/TextArea.vue'
 import CommonButton from '../Atoms/CommonButton.vue'
 import { NAVIGATION_PATH } from '../../constants/navigation'
-import { handleAddTodoInjectionKey } from '../../providers/TodoProviderInjectionKey.ts'
+import { handleAddTodoInjectionKey } from '../../providers/TodoProviderInjectionKey'
 
 const router = useRouter()
 

@@ -52,7 +52,7 @@ export const useTodoProvider = (): UseTodoProvider => {
   const handleDeleteTodo = (targetId: TodoId, targetTitle: string): void => {
     if (window.confirm(`「${targetTitle}」を削除しますか？`)) {
       const newTodoList = originTodoList.value.filter((todo) => {
-        return todo.id !== targetId
+        return String(todo.id) !== String(targetId)
       })
       originTodoList.value = newTodoList
     }

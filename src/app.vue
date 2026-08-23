@@ -4,6 +4,6 @@ import TodoProvider from './providers/TodoProvider.vue'
 
 <template>
   <TodoProvider>
-    <router-view />
+    <NuxtPage />
   </TodoProvider>
 </template>

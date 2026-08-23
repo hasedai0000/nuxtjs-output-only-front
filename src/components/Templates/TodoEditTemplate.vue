@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import BaseLayout from '../Organisms/BaseLayout.vue'
 import InputForm from '../Atoms/InputForm.vue'
 import TextArea from '../Atoms/TextArea.vue'
@@ -9,7 +8,7 @@ import { NAVIGATION_PATH } from '../../constants/navigation'
 import {
   originTodoListInjectionKey,
   handleUpdateTodoInjectionKey
-} from '../../providers/TodoProviderInjectionKey.ts'
+} from '../../providers/TodoProviderInjectionKey'
 
 const router = useRouter()
 const route = useRoute()
