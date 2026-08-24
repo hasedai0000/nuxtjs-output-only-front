@@ -5,6 +5,11 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   compatibilityDate: '2025-01-01',
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://localhost:8000/api'
+    }
+  },
   app: {
     baseURL: process.env.NODE_ENV === 'production' ? `/${REPOSITORY_NAME}/` : '/',
     head: {
