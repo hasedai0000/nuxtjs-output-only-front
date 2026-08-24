@@ -1,20 +1,19 @@
-import { ref, computed, type Ref, type ComputedRef } from 'vue'
-import { INIT_TODO_LIST, INIT_UNIQUE_ID } from '../constants/data'
+import { ref, computed } from 'vue'
+import { INIT_UNIQUE_ID } from '../constants/data'
+import {
+  fetchTodoListApi
+} from "../apis/todoApi"
 import type { TodoType, TodoId } from '../types/todo'
 
-export type UseTodoProvider = {
-  originTodoList: Ref<TodoType[]>
-  showTodoList: ComputedRef<TodoType[]>
-  searchKeyword: Ref<string>
-  handleAddTodo: (title: string, content: string) => void
-  handleUpdateTodo: (targetId: TodoId | string, title: string, content: string) => void
-  handleDeleteTodo: (targetId: TodoId | string, targetTitle: string) => void
-}
-
-export const useTodoProvider = (): UseTodoProvider => {
-  const originTodoList = ref<TodoType[]>([...INIT_TODO_LIST])
+export const useTodoProvider = () => {
+  const originTodoList = ref<Array<TodoType>>([])
   const uniqueId = ref<number>(INIT_UNIQUE_ID)
   const searchKeyword = ref<string>('')
+
+  const fetchTodoList = async () => {
+    const data = await fetchTodoListApi();
+    if (Array.isArray(data)) originTodoList.value = data;
+  }
 
   const showTodoList = computed<TodoType[]>(() => {
     return originTodoList.value.filter((todo) => {
@@ -62,6 +61,7 @@ export const useTodoProvider = (): UseTodoProvider => {
     originTodoList,
     showTodoList,
     searchKeyword,
+    fetchTodoList,
     handleAddTodo,
     handleUpdateTodo,
     handleDeleteTodo

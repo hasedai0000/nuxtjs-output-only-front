@@ -5,6 +5,7 @@ import {
   originTodoListInjectionKey,
   showTodoListInjectionKey,
   searchKeywordInjectionKey,
+  fetchTodoListInjectionKey,
   handleAddTodoInjectionKey,
   handleUpdateTodoInjectionKey,
   handleDeleteTodoInjectionKey
@@ -14,6 +15,7 @@ const {
   originTodoList,
   showTodoList,
   searchKeyword,
+  fetchTodoList,
   handleAddTodo,
   handleUpdateTodo,
   handleDeleteTodo
@@ -22,6 +24,7 @@ const {
 provide(originTodoListInjectionKey, originTodoList)
 provide(showTodoListInjectionKey, showTodoList)
 provide(searchKeywordInjectionKey, searchKeyword)
+provide(fetchTodoListInjectionKey, fetchTodoList)
 provide(handleAddTodoInjectionKey, handleAddTodo)
 provide(handleUpdateTodoInjectionKey, handleUpdateTodo)
 provide(handleDeleteTodoInjectionKey, handleDeleteTodo)

@@ -4,9 +4,14 @@ import BaseLayout from '../Organisms/BaseLayout.vue'
 import TodoList from '../Organisms/TodoList.vue'
 import InputForm from '../Atoms/InputForm.vue'
 
-import { searchKeywordInjectionKey } from '../../providers/TodoProviderInjectionKey'
+import { searchKeywordInjectionKey, fetchTodoListInjectionKey } from '../../providers/TodoProviderInjectionKey'
 
 const searchKeyword = inject(searchKeywordInjectionKey)
+const fetchTodoList = inject(fetchTodoListInjectionKey)
+
+onMounted(() => {
+  if (fetchTodoList) fetchTodoList();
+})
 </script>
 
 <template>

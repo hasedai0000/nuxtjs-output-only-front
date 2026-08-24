@@ -7,6 +7,8 @@ export const showTodoListInjectionKey: InjectionKey<ComputedRef<TodoType[]>> = S
 
 export const searchKeywordInjectionKey: InjectionKey<Ref<string>> = Symbol()
 
+export const fetchTodoListInjectionKey: InjectionKey<() => Promise<void>> = Symbol()
+
 export const handleAddTodoInjectionKey: InjectionKey<
   (title: string, content: string) => void
 > = Symbol()
