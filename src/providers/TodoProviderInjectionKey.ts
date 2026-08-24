@@ -16,5 +16,5 @@ export const handleUpdateTodoInjectionKey: InjectionKey<
 > = Symbol()
 
 export const handleDeleteTodoInjectionKey: InjectionKey<
-  (targetId: TodoId, targetTitle: string) => void
+  (targetId: TodoId | string, targetTitle: string) => void
 > = Symbol()

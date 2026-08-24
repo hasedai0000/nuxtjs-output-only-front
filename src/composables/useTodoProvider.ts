@@ -8,7 +8,7 @@ export type UseTodoProvider = {
   searchKeyword: Ref<string>
   handleAddTodo: (title: string, content: string) => void
   handleUpdateTodo: (targetId: TodoId | string, title: string, content: string) => void
-  handleDeleteTodo: (targetId: TodoId, targetTitle: string) => void
+  handleDeleteTodo: (targetId: TodoId | string, targetTitle: string) => void
 }
 
 export const useTodoProvider = (): UseTodoProvider => {
@@ -49,7 +49,7 @@ export const useTodoProvider = (): UseTodoProvider => {
     })
   }
 
-  const handleDeleteTodo = (targetId: TodoId, targetTitle: string): void => {
+  const handleDeleteTodo = (targetId: TodoId | string, targetTitle: string): void => {
     if (window.confirm(`「${targetTitle}」を削除しますか？`)) {
       const newTodoList = originTodoList.value.filter((todo) => {
         return String(todo.id) !== String(targetId)
