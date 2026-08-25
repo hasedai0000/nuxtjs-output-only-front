@@ -36,3 +36,31 @@ export const fetchTodoDetailApi = async (id: number) => {
     }
   }
 };
+
+/**
+ * Todo更新のAPI接続処理
+ * @param id
+ * @param title
+ * @param content
+ * @returns
+ */
+export const updateTodoApi = async (
+  id: number,
+  title: string,
+  content: string
+) => {
+  try {
+    const { data }: AxiosResponse<TodoType> = await globalAxios().patch(
+      `/todos/${id}`,
+      {
+        title,
+        content
+      }
+    );
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.code;
+    }
+  }
+};

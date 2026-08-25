@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { INIT_UNIQUE_ID } from '../constants/data'
 import {
   fetchTodoListApi,
+  updateTodoApi
 } from "../apis/todoApi"
 import type { TodoType, TodoId } from '../types/todo'
 
@@ -35,17 +36,21 @@ export const useTodoProvider = () => {
     }
   }
 
-  const handleUpdateTodo = (targetId: TodoId | string, title: string, content: string): void => {
-    originTodoList.value = originTodoList.value.map((todo) => {
-      if (String(todo.id) === String(targetId)) {
-        return {
-          ...todo,
-          title: title.trim(),
-          content: content.trim()
-        }
-      }
-      return todo
-    })
+  const handleUpdateTodo = async (
+    targetId: TodoId | string,
+    title: string,
+    content: string
+  ) => {
+    if (title.trim() === "" || content.trim() === "") return
+    const todoId = Number(targetId)
+    if (Number.isNaN(todoId)) return
+    const data = await updateTodoApi(todoId, title, content)
+    if (data && typeof data !== "string") {
+      const newTodoList = originTodoList.value.map((todo) => {
+        return todo.id === todoId ? data : todo;
+      })
+      originTodoList.value = newTodoList
+    }
   }
 
   const handleDeleteTodo = (targetId: TodoId | string, targetTitle: string): void => {
