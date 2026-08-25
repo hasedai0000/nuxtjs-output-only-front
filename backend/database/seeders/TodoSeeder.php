@@ -3,13 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class TodoSeeder extends Seeder
 {
     public function run(): void
     {
-        Todo::query()->delete();
+        $user = User::where('email', 'demo@example.com')->firstOrFail();
+
+        Todo::query()->where('user_id', $user->id)->delete();
 
         $samples = [
             ['title' => '牛乳を買う', 'content' => '低脂肪 1L'],
@@ -23,7 +26,7 @@ class TodoSeeder extends Seeder
         ];
 
         foreach ($samples as $sample) {
-            Todo::create($sample);
+            $user->todos()->create($sample);
         }
     }
 }
