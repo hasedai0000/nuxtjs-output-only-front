@@ -3,13 +3,13 @@ import { INIT_UNIQUE_ID } from '../constants/data'
 import {
   fetchTodoListApi,
   createTodoApi,
-  updateTodoApi
+  updateTodoApi,
+  deleteTodoApi
 } from "../apis/todoApi"
 import type { TodoType, TodoId } from '../types/todo'
 
 export const useTodoProvider = () => {
   const originTodoList = ref<Array<TodoType>>([])
-  const uniqueId = ref<number>(INIT_UNIQUE_ID)
   const searchKeyword = ref<string>('')
 
   const fetchTodoList = async () => {
@@ -51,10 +51,16 @@ export const useTodoProvider = () => {
     }
   }
 
-  const handleDeleteTodo = (targetId: TodoId | string, targetTitle: string): void => {
+  const handleDeleteTodo = (
+    targetId: TodoId | string, 
+    targetTitle: string
+  ) => {
     if (window.confirm(`「${targetTitle}」を削除しますか？`)) {
+      const todoId = Number(targetId)
+      if (Number.isNaN(todoId)) return
+      deleteTodoApi(Number(targetId))
       const newTodoList = originTodoList.value.filter((todo) => {
-        return String(todo.id) !== String(targetId)
+        return String(todo.id) !== targetId
       })
       originTodoList.value = newTodoList
     }
