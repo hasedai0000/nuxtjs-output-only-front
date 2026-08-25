@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { INIT_UNIQUE_ID } from '../constants/data'
 import {
-  fetchTodoListApi
+  fetchTodoListApi,
 } from "../apis/todoApi"
 import type { TodoType, TodoId } from '../types/todo'
 
