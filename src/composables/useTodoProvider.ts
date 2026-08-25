@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { INIT_UNIQUE_ID } from '../constants/data'
 import {
   fetchTodoListApi,
+  createTodoApi,
   updateTodoApi
 } from "../apis/todoApi"
 import type { TodoType, TodoId } from '../types/todo'
@@ -23,16 +24,13 @@ export const useTodoProvider = () => {
     })
   })
 
-  const handleAddTodo = (title: string, content: string): void => {
-    if (title.trim() !== '' && content.trim() !== '') {
-      const nextUniqueId = uniqueId.value + 1
-      originTodoList.value.push({
-        id: nextUniqueId,
-        title: title.trim(),
-        content: content.trim()
-      })
-
-      uniqueId.value = nextUniqueId
+  const handleAddTodo = async (
+    title: string,
+    content: string
+  ) => {
+    if (title.trim() !== "" && content.trim() !== "") {
+      const data = await createTodoApi(title, content)
+      if (data && typeof data !== "string") originTodoList.value.push(data)
     }
   }
 
