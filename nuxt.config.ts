@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   compatibilityDate: '2025-01-01',
   devtools: { enabled: true },
+  modules: ['@pinia/nuxt'],
   runtimeConfig: {
     public: {
       apiBase: 'http://localhost:8000/api'

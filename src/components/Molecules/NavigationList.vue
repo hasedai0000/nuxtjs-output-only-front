@@ -1,22 +1,15 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { storeToRefs } from 'pinia'
 import NavigationLink from '../Atoms/NavigationLink.vue'
 import { NAVIGATION_PATH } from '../../constants/navigation'
-import {
-  currentUserInjectionKey,
-  handleLogoutInjectionKey,
-  isAuthenticatedInjectionKey
-} from '../../providers/AuthProviderInjectionKey'
+import { useAuthStore } from '../../stores/auth'
 
 const router = useRouter()
-
-const currentUser = inject(currentUserInjectionKey)
-const isAuthenticated = inject(isAuthenticatedInjectionKey)
-const handleLogout = inject(handleLogoutInjectionKey)
+const authStore = useAuthStore()
+const { currentUser, isAuthenticated } = storeToRefs(authStore)
 
 const onLogout = async (): Promise<void> => {
-  if (!handleLogout) return
-  const ok = await handleLogout()
+  const ok = await authStore.logout()
   if (ok) router.push(NAVIGATION_PATH.LOGIN)
 }
 </script>
