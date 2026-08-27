@@ -7,5 +7,7 @@ export const NAVIGATION_PATH = {
   TOP: '/',
   DETAIL: '/detail/',
   CREATE: '/create',
-  EDIT: '/edit/'
+  EDIT: '/edit/',
+  LOGIN: '/login',
+  REGISTER: '/register'
 } as const

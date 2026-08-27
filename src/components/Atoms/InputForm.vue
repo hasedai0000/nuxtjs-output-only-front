@@ -4,6 +4,8 @@ type Props = {
   modelValue?: string
   name: string
   placeholder?: string
+  type?: 'text' | 'password' | 'email'
+  autocomplete?: string
   onKeydown?: (event: KeyboardEvent) => void
 }
 
@@ -11,7 +13,7 @@ type Emits = {
   (e: "update:modelValue", value: string): void;
 }
 
-const { disabled, modelValue, name, placeholder, onKeydown } =
+const { disabled, modelValue, name, placeholder, type = 'text', autocomplete, onKeydown } =
   defineProps<Props>();
 
 defineEmits<Emits>();
@@ -19,11 +21,12 @@ defineEmits<Emits>();
 
 <template>
   <input
-    type="text"
+    :type="type"
     class="input"
     :disabled="disabled"
     :placeholder="placeholder"
     :name="name"
+    :autocomplete="autocomplete"
     :value="modelValue"
     @input="
       $emit('update:modelValue', ($event.target as HTMLInputElement).value)
